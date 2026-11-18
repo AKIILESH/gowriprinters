@@ -25,7 +25,7 @@ export function Hero() {
 
 
               {/* Main Headline with clamp() and whitespace-nowrap for 'Every Need' */}
-              <h1 className="text-[clamp(2.4rem,4.5vw,3.75rem)] font-extrabold tracking-tight text-[#111318] leading-[1.12]">
+              <h1 className="text-[clamp(1.9rem,5.5vw,3.75rem)] font-extrabold tracking-tight text-[#111318] leading-[1.14]">
                 Premium Printing
                 <br />
                 Solutions for

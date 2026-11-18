@@ -19,7 +19,7 @@ export function CTA() {
             </p>
 
             {/* Headline */}
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-[#111318] leading-[1.12] tracking-tight">
+            <h2 className="font-heading text-[clamp(1.75rem,4.5vw,3.25rem)] font-bold text-[#111318] leading-[1.14] tracking-tight">
               Your Next Great Print<br className="hidden sm:inline" /> Project Starts Here.
             </h2>
 

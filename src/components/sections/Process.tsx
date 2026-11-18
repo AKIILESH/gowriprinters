@@ -103,11 +103,11 @@ export function Process() {
         {/* =========================================
             MOBILE / TABLET TIMELINE (Vertical Connected Process)
             ========================================= */}
-        <div className="block lg:hidden relative pl-8 sm:pl-10 border-l border-[#E5E8EF] ml-4 sm:ml-5 space-y-10 sm:space-y-12">
+        <div className="block lg:hidden relative pl-7 sm:pl-10 border-l border-[#E5E8EF] ml-5 sm:ml-7 space-y-10 sm:space-y-12">
           {steps.map((step) => (
             <div key={step.number} className="group relative">
-              {/* Vertical Node Marker */}
-              <div className="absolute -left-[35px] sm:-left-[39px] top-0 flex h-9 w-9 items-center justify-center rounded-full bg-white border border-[#1D397F] text-[#1D397F] shadow-sm font-mono text-xs font-bold">
+              {/* Vertical Node Marker — centered directly on the border-l line */}
+              <div className="absolute -left-[18px] top-0 flex h-9 w-9 items-center justify-center rounded-full bg-white border border-[#1D397F] text-[#1D397F] shadow-sm font-mono text-xs font-bold">
                 {step.number}
               </div>
 
