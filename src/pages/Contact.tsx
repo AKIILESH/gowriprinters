@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -46,6 +48,20 @@ const contactInfo = [
 ];
 
 export function ContactPage() {
+  const [searchParams] = useSearchParams();
+  const [selectedService, setSelectedService] = useState("");
+
+  useEffect(() => {
+    const s = searchParams.get("service")?.toLowerCase();
+    if (s) {
+      if (s.includes("poster")) setSelectedService("posters");
+      else if (s.includes("flyer")) setSelectedService("flyers");
+      else if (s.includes("book")) setSelectedService("books");
+      else if (s.includes("pack")) setSelectedService("packaging");
+      else if (s.includes("card") || s.includes("stationery")) setSelectedService("cards");
+      else if (s.includes("brochure") || s.includes("catalogue")) setSelectedService("brochures");
+    }
+  }, [searchParams]);
   return (
     <>
       {/* Header */}
@@ -178,6 +194,8 @@ export function ContactPage() {
                     </label>
                     <select
                       id="service"
+                      value={selectedService}
+                      onChange={(e) => setSelectedService(e.target.value)}
                       className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     >
                       <option value="">Select a service</option>

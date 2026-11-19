@@ -4,8 +4,6 @@ import {
   faTruck,
   faPalette,
   faHandshake,
-  faLeaf,
-  faHeadset,
 } from "@fortawesome/free-solid-svg-icons";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
@@ -45,20 +43,6 @@ const advantages: Advantage[] = [
     description:
       "Transparent pricing with no hidden costs. Volume discounts for bulk orders to maximize your budget.",
   },
-  {
-    number: "05",
-    icon: faLeaf,
-    title: "Eco-Friendly Options",
-    description:
-      "Soy-based inks, recycled paper stocks, and sustainable packaging — print responsibly with us.",
-  },
-  {
-    number: "06",
-    icon: faHeadset,
-    title: "Dedicated Support",
-    description:
-      "Personal account manager for every project. We guide you from concept through to final delivery.",
-  },
 ];
 
 export function WhyUs() {
@@ -82,9 +66,9 @@ export function WhyUs() {
         </div>
 
         {/* =========================================
-            3-Column × 2-Row Advantages Grid
+            4-Column Advantages Grid
             ========================================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
           {advantages.map((item) => (
             <div
               key={item.number}

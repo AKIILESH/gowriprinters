@@ -1,232 +1,113 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faImage,
-  faFileLines,
-  faBook,
-  faBoxOpen,
-  faIdCard,
-  faNewspaper,
-  faCheck,
-  faArrowRight,
-} from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-import { spacing, typography } from "@/theme";
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { servicesData } from "@/data/services";
+import { ServiceCard } from "@/components/services/ServiceCard";
 import { CTA } from "@/components/sections/CTA";
-import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-
-interface ServiceDetail {
-  icon: IconDefinition;
-  title: string;
-  description: string;
-  features: string[];
-  badge?: string;
-}
-
-const services: ServiceDetail[] = [
-  {
-    icon: faImage,
-    title: "Poster Printing",
-    description:
-      "High-impact posters for advertising, events, education, and decoration. We print on a wide range of paper stocks and finishes.",
-    features: [
-      "Sizes from A4 to billboard-scale",
-      "Matte, gloss, satin, and canvas finishes",
-      "UV-resistant inks for outdoor display",
-      "Lamination and mounting available",
-      "Same-day express printing",
-    ],
-    badge: "Popular",
-  },
-  {
-    icon: faFileLines,
-    title: "Flyers & Leaflets",
-    description:
-      "Affordable, high-quality flyers perfect for marketing campaigns, promotions, and information distribution.",
-    features: [
-      "Full-colour digital and offset printing",
-      "Single-sided and double-sided options",
-      "Multiple paper weights (100gsm – 350gsm)",
-      "Custom die-cut shapes available",
-      "Bulk pricing for large volumes",
-    ],
-  },
-  {
-    icon: faBook,
-    title: "Book Printing & Publishing",
-    description:
-      "End-to-end book production — from manuscripts to finished copies ready for distribution and retail.",
-    features: [
-      "Perfect binding, saddle-stitch, case binding",
-      "Paperback and hardcover options",
-      "ISBN registration support",
-      "Full-colour and B&W interiors",
-      "Print-on-demand and bulk runs",
-    ],
-    badge: "Premium",
-  },
-  {
-    icon: faBoxOpen,
-    title: "Packaging Materials",
-    description:
-      "Custom packaging solutions that protect your products and enhance your brand at the shelf.",
-    features: [
-      "Corrugated boxes and cartons",
-      "Food-grade and FSSAI-compliant packaging",
-      "Product labels and stickers",
-      "Retail-ready shelf boxes",
-      "Eco-friendly packaging options",
-    ],
-  },
-  {
-    icon: faIdCard,
-    title: "Business Cards & Stationery",
-    description:
-      "Premium business cards and corporate stationery that make a memorable first impression.",
-    features: [
-      "Standard, square, and mini sizes",
-      "Embossing and debossing",
-      "Gold and silver foil stamping",
-      "Spot UV and soft-touch finishes",
-      "Matching letterheads and envelopes",
-    ],
-  },
-  {
-    icon: faNewspaper,
-    title: "Brochures & Catalogues",
-    description:
-      "Multi-page marketing collateral designed to showcase your products, services, and brand story.",
-    features: [
-      "Bi-fold, tri-fold, and gate-fold designs",
-      "Up to 200+ page catalogues",
-      "Wire-o and spiral binding",
-      "In-house design and typesetting",
-      "Variable data printing for personalization",
-    ],
-  },
-];
 
 const faqs = [
   {
-    q: "What is the minimum order quantity?",
-    a: "We have no strict minimums for digital printing. For offset printing, minimum runs typically start at 500 units. Contact us for specific quotes.",
+    q: "What is the minimum order quantity for each service?",
+    a: "We have flexible minimums: single-unit proofing and small batches (from 1 unit) on our high-resolution digital presses, and commercial volume runs typically starting at 100 to 250 units on our multi-unit Heidelberg offset presses. Contact our estimators for custom volume tiers.",
   },
   {
-    q: "How long does delivery take?",
-    a: "Standard orders are delivered within 2-3 business days. Same-day express printing is available for select products at an additional charge.",
+    q: "How fast can you deliver urgent print orders?",
+    a: "Same-day express turnaround is available for posters, flyers, and select digital items. Standard commercial runs (books, brochures, packaging) typically dispatch within 2 to 5 business days across Tamil Nadu and all of India.",
   },
   {
-    q: "Do you offer design services?",
-    a: "Yes! Our in-house design team can create artwork from scratch or refine your existing designs to be print-ready.",
+    q: "Can you review my artwork before printing?",
+    a: "Yes. Every submitted file undergoes a complimentary pre-flight check by our in-house prepress team. We verify bleed margins, image resolution (300 DPI+), CMYK color spaces, and fonts to ensure flawless press results.",
   },
   {
-    q: "Can I get a sample before placing a bulk order?",
-    a: "Absolutely. We offer sample prints so you can verify colours, paper quality, and finish before committing to a large run.",
+    q: "Do you supply physical proofs before full volume production?",
+    a: "Absolutely. We provide GMG-calibrated digital color contract proofs and unprinted structural dummy mockups (for packaging and books) so you can review paper feel, folds, and color before the presses roll.",
   },
   {
-    q: "What file formats do you accept?",
-    a: "We accept PDF (preferred), AI, PSD, INDD, EPS, TIFF, and high-resolution JPG/PNG files. Our team can help convert formats if needed.",
+    q: "What file formats should I submit?",
+    a: "We accept press-ready PDF (PDF/X-1a preferred), Adobe Illustrator (.ai), InDesign (.indd), Photoshop (.psd), and vector EPS files. Our studio team can also help convert or optimize files if required.",
   },
 ];
 
 export function ServicesPage() {
   return (
-    <>
-      {/* Page header */}
-      <section className={`bg-muted/30 ${spacing.section.y} ${spacing.section.x}`}>
-        <div className={`${spacing.container} text-center`}>
-          <Badge variant="secondary" className="mb-4">Our Services</Badge>
-          <h1 className={typography.h1}>
-            Everything You Need,{" "}
-            <span className="text-primary">Printed Perfectly</span>
-          </h1>
-          <p className={`${typography.bodyLg} mx-auto mt-4 max-w-2xl text-muted-foreground`}>
-            Explore our comprehensive range of printing and packaging services,
-            each backed by decades of expertise and modern technology.
-          </p>
+    <div className="w-full bg-white font-sans">
+      {/* ========================================================
+          1. SERVICES HEADER
+          ======================================================== */}
+      <section className="w-full bg-[#F7F8FA] border-b border-[#E5E8EF] py-12 lg:py-16">
+        <div className="mx-auto max-w-[1380px] px-5 sm:px-8">
+          <div className="max-w-3xl">
+            <p className="text-xs sm:text-sm font-bold tracking-[0.22em] text-[#1D397F] uppercase mb-3">
+              OUR SERVICES
+            </p>
+            <h1 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-[800] tracking-tight text-[#111318] leading-[1.12]">
+              Everything You Need<br className="hidden sm:inline" />{" "}
+              <span className="text-[#1D397F]">Printed Perfectly.</span>
+            </h1>
+          </div>
         </div>
       </section>
 
-      {/* Services grid */}
-      <section className={`${spacing.section.y} ${spacing.section.x}`}>
-        <div className={spacing.container}>
-          <div className="grid gap-8 lg:grid-cols-2">
-            {services.map((service) => (
-              <Card
-                key={service.title}
-                className="overflow-hidden border-border/50 transition-shadow hover:shadow-lg hover:shadow-primary/5"
-              >
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                      <FontAwesomeIcon icon={service.icon} className="h-5 w-5" />
-                    </div>
-                    {service.badge && (
-                      <Badge variant="outline">{service.badge}</Badge>
-                    )}
-                  </div>
-                  <CardTitle className="mt-4 text-xl">{service.title}</CardTitle>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {service.description}
-                  </p>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {service.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2 text-sm">
-                        <FontAwesomeIcon
-                          icon={faCheck}
-                          className="h-3.5 w-3.5 text-primary"
-                        />
-                        <span>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+      {/* ========================================================
+          2. 3-COLUMN EDITORIAL SERVICE SHOWCASE GRID
+          ======================================================== */}
+      <section className="py-16 lg:py-24 border-b border-[#E5E8EF]">
+        <div className="mx-auto max-w-[1380px] px-5 sm:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {servicesData.map((service, index) => (
+              <ServiceCard
+                key={service.id}
+                service={service}
+                priority={index < 3}
+              />
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className={`bg-muted/30 ${spacing.section.y} ${spacing.section.x}`}>
-        <div className={`${spacing.container} mx-auto max-w-3xl`}>
-          <div className="text-center">
-            <Badge variant="secondary" className="mb-4">FAQ</Badge>
-            <h2 className={typography.h2}>Frequently Asked Questions</h2>
+      {/* ========================================================
+          3. FREQUENTLY ASKED QUESTIONS (Accordion)
+          ======================================================== */}
+      <section className="py-16 lg:py-20 bg-[#F7F8FA] border-b border-[#E5E8EF]">
+        <div className="mx-auto max-w-3xl px-5 sm:px-8">
+          <div className="text-center mb-10">
+            <p className="text-xs sm:text-sm font-bold tracking-[0.22em] text-[#1D397F] uppercase mb-2">
+              HELP & GUIDANCE
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-[800] tracking-tight text-[#111318]">
+              Frequently Asked Questions
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-[#626978]">
+              Common questions about specs, files, materials, and turnaround.
+            </p>
           </div>
-          <Accordion className="mt-8">
+
+          <Accordion className="space-y-3">
             {faqs.map((faq, i) => (
-              <AccordionItem key={i} value={`faq-${i}`}>
-                <AccordionTrigger className="text-left text-sm font-medium">
+              <AccordionItem
+                key={i}
+                value={`faq-${i}`}
+                className="rounded-xl border border-[#E5E8EF] bg-white px-5 transition-colors"
+              >
+                <AccordionTrigger className="text-left text-sm sm:text-base font-bold text-[#111318] py-4 hover:no-underline">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground">
+                <AccordionContent className="text-sm leading-relaxed text-[#626978] pb-4">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
-
-          <div className="mt-10 text-center">
-            <p className="text-sm text-muted-foreground">
-              Still have questions?
-            </p>
-            <Button className="mt-3" asChild>
-              <Link to="/contact">
-                Contact Us
-                <FontAwesomeIcon icon={faArrowRight} className="ml-2 h-3.5 w-3.5" />
-              </Link>
-            </Button>
-          </div>
         </div>
       </section>
 
+      {/* ========================================================
+          4. FINAL CTA
+          ======================================================== */}
       <CTA />
-    </>
+    </div>
   );
 }

@@ -26,7 +26,7 @@ const services: ServiceItem[] = [
     title: "Poster Printing",
     description:
       "Vibrant, high-resolution posters in all sizes. Perfect for events, promotions, and wall art. Available in matte, glossy, and canvas finishes.",
-    href: "/services#posters",
+    href: "/contact?service=posters",
   },
   {
     number: "02",
@@ -34,7 +34,7 @@ const services: ServiceItem[] = [
     title: "Flyers & Leaflets",
     description:
       "Cost-effective flyers and leaflets for maximum outreach. Full-colour digital and offset printing with quick turnaround times.",
-    href: "/services#flyers",
+    href: "/contact?service=flyers",
   },
   {
     number: "03",
@@ -42,7 +42,7 @@ const services: ServiceItem[] = [
     title: "Book Printing",
     description:
       "Complete book publishing solutions — from paperback novels to hardbound academic texts. Perfect binding, saddle-stitch, and case binding options.",
-    href: "/services#books",
+    href: "/contact?service=books",
   },
   {
     number: "04",
@@ -50,7 +50,7 @@ const services: ServiceItem[] = [
     title: "Packaging Materials",
     description:
       "Custom corrugated boxes, product cartons, labels, and food-safe packaging. Designed to protect and present your products beautifully.",
-    href: "/services#packaging",
+    href: "/contact?service=packaging",
   },
   {
     number: "05",
@@ -58,7 +58,7 @@ const services: ServiceItem[] = [
     title: "Business Cards",
     description:
       "Make a lasting first impression with premium business cards. Options include embossed, foil-stamped, spot UV, and eco-friendly recycled stock.",
-    href: "/services#stationery",
+    href: "/contact?service=cards",
   },
   {
     number: "06",
@@ -66,13 +66,13 @@ const services: ServiceItem[] = [
     title: "Brochures & Catalogues",
     description:
       "Multi-page brochures and catalogues that showcase your brand. Bi-fold, tri-fold, and custom folding options available.",
-    href: "/services#brochures",
+    href: "/contact?service=brochures",
   },
 ];
 
 export function ServicesSection() {
   return (
-    <section className="w-full bg-white py-20 lg:py-28 border-b border-[#E5E8EF]">
+    <section id="services" className="w-full bg-white py-20 lg:py-28 border-b border-[#E5E8EF]">
       <div className="mx-auto max-w-[1380px] px-5 sm:px-8">
         <div className="flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-16">
 
@@ -110,8 +110,9 @@ export function ServicesSection() {
           <div className="w-full lg:w-[66%]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12">
               {services.map((service) => (
-                <div
+                <Link
                   key={service.number}
+                  to={service.href}
                   className="group relative flex flex-col justify-between border-b border-[#E5E8EF] pb-8 transition-colors duration-200 hover:border-[#D9A52E]"
                 >
                   {/* Subtle top indicator bar on hover */}
@@ -139,7 +140,7 @@ export function ServicesSection() {
                       {service.description}
                     </p>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
